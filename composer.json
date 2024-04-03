@@ -1,0 +1,19 @@
+{
+    "name": "mahdiaslami/simple-git",
+    "description": "A simple interface for using with Git in php",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mahdiaslami\\Console\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mahdi Aslami Khavari",
+            "email": "mahdyaslami@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
