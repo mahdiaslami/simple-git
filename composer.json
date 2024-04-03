@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Mahdiaslami\\Console\\": "src/"
+            "MahdiAslami\\Console\\": "src/"
         }
     },
     "autoload-dev": {
