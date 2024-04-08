@@ -66,4 +66,9 @@ final class Repository
     {
         return Process::run(['git', 'status', '--short'], $this->cwd, $this->env);
     }
+
+    public function push()
+    {
+        return new Push($this->cwd, $this->env);
+    }
 }
