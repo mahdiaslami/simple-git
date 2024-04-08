@@ -24,4 +24,21 @@ class TagTest extends TestCase
 
         $this->assertEquals(['tag-1', 'tag-2'], $repository->tags());
     }
+
+    public function test_add_method()
+    {
+        Process::create($this->tempPath('r'))
+            ->add(['git', 'init'])
+            ->add(['git', 'config', '--local', 'user.email', "test@example.com"])
+            ->add(['git', 'config', '--local', 'user.name', "Test"])
+            ->add(['touch', 'file1'])
+            ->add(['git', 'add', '.'])
+            ->add(['git', 'commit', '-m', 'add file1'])
+            ->runAll();
+
+        $repository = new Repository($this->tempPath('r'));
+        $repository->tag()->add('tag-test');
+
+        $this->assertEquals('tag-test', trim(Process::run(['git', 'tag'], $this->tempPath('r'))));
+    }
 }

@@ -24,4 +24,9 @@ class Tag extends Command
     {
         Process::run(['git', 'tag', '-d', $name], $this->cwd, $this->env);
     }
+
+    public function add($name)
+    {
+        Process::run(['git', 'tag', $name], $this->cwd, $this->env);
+    }
 }
