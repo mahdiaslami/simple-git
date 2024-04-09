@@ -76,4 +76,14 @@ final class Repository
     {
         Process::run(['git', 'checkout', $target], $this->cwd, $this->env);
     }
+
+    public function versionTags()
+    {
+        return $this->versionTag()->list();
+    }
+
+    public function versionTag()
+    {
+        return new VersionTag($this);
+    }
 }
