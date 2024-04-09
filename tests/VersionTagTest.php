@@ -5,7 +5,7 @@ namespace Tests;
 use MahdiAslami\Console\Process;
 use MahdiAslami\Console\Repository;
 
-class VersionTest extends TestCase
+class VersionTagTest extends TestCase
 {
     public function test_get_all_versions()
     {
