@@ -49,4 +49,25 @@ class RepositoryTest extends TestCase
             trim($repository->shortStatus())
         );
     }
+
+    public function test_checkout_method()
+    {
+        Process::create($this->tempPath('r'))
+            ->add(['git', 'init'])
+            ->add(['git', 'config', '--local', 'user.email', "test@example.com"])
+            ->add(['git', 'config', '--local', 'user.name', "Test"])
+            ->add(['touch', 'file1'])
+            ->add(['git', 'add', '.'])
+            ->add(['git', 'commit', '-m', 'add file1'])
+            ->add(['git', 'branch', 'branch-test'])
+            ->runAll();
+
+        $repository = new Repository($this->tempPath('r'));
+        $repository->checkout('branch-test');
+
+        $this->assertEquals(
+            '## branch-test',
+            trim(Process::run(['git', 'status', '-bs'], $this->tempPath('r')))
+        );
+    }
 }

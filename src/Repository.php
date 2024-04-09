@@ -71,4 +71,9 @@ final class Repository
     {
         return new Push($this->cwd, $this->env);
     }
+
+    public function checkout($target)
+    {
+        Process::run(['git', 'checkout', $target], $this->cwd, $this->env);
+    }
 }
