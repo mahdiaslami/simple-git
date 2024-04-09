@@ -57,7 +57,7 @@ final class Repository
         rmdir($path);
     }
 
-    public function add()
+    public function add(): Add
     {
         return new Add($this->cwd, $this->env);
     }
@@ -67,7 +67,7 @@ final class Repository
         return Process::run(['git', 'status', '--short'], $this->cwd, $this->env);
     }
 
-    public function push()
+    public function push(): Push
     {
         return new Push($this->cwd, $this->env);
     }
@@ -82,7 +82,7 @@ final class Repository
         return $this->versionTag()->list();
     }
 
-    public function versionTag()
+    public function versionTag(): VersionTag
     {
         return new VersionTag($this);
     }
