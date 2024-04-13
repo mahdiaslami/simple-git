@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use MahdiAslami\Console\Repository;
+use MahdiAslami\Cli\Repository;
 
 class TagTest extends TestCase
 {

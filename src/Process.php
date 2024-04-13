@@ -1,6 +1,6 @@
 <?php
 
-namespace MahdiAslami\Console;
+namespace MahdiAslami\Cli;
 
 class Process
 {
