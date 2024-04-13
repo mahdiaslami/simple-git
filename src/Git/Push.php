@@ -1,6 +1,6 @@
 <?php
 
-namespace MahdiAslami\Cli;
+namespace MahdiAslami\Cli\Git;
 
 class Push extends Command
 {

@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use MahdiAslami\Cli\Repository;
+use MahdiAslami\Cli\Git\Repository;
 
 class VersionTagTest extends TestCase
 {
