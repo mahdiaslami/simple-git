@@ -72,12 +72,12 @@ final class Repository
         return new Push($this->cwd, $this->env);
     }
 
-    public function checkout($target)
+    public function checkout(string $target)
     {
         Process::run(['git', 'checkout', $target], $this->cwd, $this->env);
     }
 
-    public function versionTags()
+    public function versionTags(): array
     {
         return $this->versionTag()->list();
     }
