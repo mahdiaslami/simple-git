@@ -17,6 +17,20 @@ final class Repository
         $this->cwd = rtrim(realpath($cwd), '\/');
     }
 
+    public function workDir(string $path): static
+    {
+        $this->cwd = $path;
+
+        return $this;
+    }
+
+    public function env(array $env): static
+    {
+        $this->env = $env;
+
+        return $this;
+    }
+
     public function tags(): array
     {
         return $this->tag()->list();

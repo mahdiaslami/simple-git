@@ -16,6 +16,8 @@ use MahdiAslami\Cli\Git\Repository;
  * @method static void checkout(string $target)
  * @method static array versionTags()
  * @method static \MahdiAslami\Cli\Git\VersionTag versionTag()
+ * @method static \MahdiAslami\Cli\Git\Repository workDir(string $path)
+ * @method static \MahdiAslami\Cli\Git\Repository env(array $env)
  * 
  * @see \MahdiAslami\Cli\Git\Tag
  * @see \MahdiAslami\Cli\Git\Add
