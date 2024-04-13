@@ -42,4 +42,20 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
         rmdir($path);
     }
+
+    public function runMultipleCommands(array $commands, $cwd = null, $env = null): string
+    {
+        return array_reduce(
+            $commands,
+            fn($results, $command) => $results . "\n" . $this->runOneCommand($command, $cwd, $env),
+            ''
+        );
+    }
+
+    public function runOneCommand(array $command, $cwd = null, $env = null): string
+    {
+        $process = new \Symfony\Component\Process\Process($command, $cwd, $env);
+        $process->run();
+        return $process->getOutput();
+    }
 }

@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-use MahdiAslami\Console\Process;
 use MahdiAslami\Console\Repository;
 
 class RepositoryTest extends TestCase
@@ -17,9 +16,7 @@ class RepositoryTest extends TestCase
 
     public function test_removeVertionControl_method()
     {
-        Process::create($this->tempPath('r'))
-            ->add(['git', 'init'])
-            ->runAll();
+        $this->runOneCommand(['git', 'init'], $this->tempPath('r'));
 
         $repository = new Repository($this->tempPath('r'));
         $repository->removeVersionControl();
@@ -52,22 +49,22 @@ class RepositoryTest extends TestCase
 
     public function test_checkout_method()
     {
-        Process::create($this->tempPath('r'))
-            ->add(['git', 'init'])
-            ->add(['git', 'config', '--local', 'user.email', "test@example.com"])
-            ->add(['git', 'config', '--local', 'user.name', "Test"])
-            ->add(['touch', 'file1'])
-            ->add(['git', 'add', '.'])
-            ->add(['git', 'commit', '-m', 'add file1'])
-            ->add(['git', 'branch', 'branch-test'])
-            ->runAll();
+        $this->runMultipleCommands([
+            ['git', 'init'],
+            ['git', 'config', '--local', 'user.email', "test@example.com"],
+            ['git', 'config', '--local', 'user.name', "Test"],
+            ['touch', 'file1'],
+            ['git', 'add', '.'],
+            ['git', 'commit', '-m', 'add file1'],
+            ['git', 'branch', 'branch-test'],
+        ], $this->tempPath('r'));
 
         $repository = new Repository($this->tempPath('r'));
         $repository->checkout('branch-test');
 
         $this->assertEquals(
             '## branch-test',
-            trim(Process::run(['git', 'status', '-bs'], $this->tempPath('r')))
+            trim($this->runOneCommand(['git', 'status', '-bs'], $this->tempPath('r')))
         );
     }
 }

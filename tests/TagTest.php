@@ -2,23 +2,22 @@
 
 namespace Tests;
 
-use MahdiAslami\Console\Process;
 use MahdiAslami\Console\Repository;
 
 class TagTest extends TestCase
 {
     public function test_get_all_tags()
     {
-        Process::create($this->tempPath('r'))
-            ->add(['git', 'init'])
-            ->add(['git', 'config', '--local', 'user.email', "test@example.com"])
-            ->add(['git', 'config', '--local', 'user.name', "Test"])
-            ->add(['touch', 'file1'])
-            ->add(['git', 'add', '.'])
-            ->add(['git', 'commit', '-m', 'add file1'])
-            ->add(['git', 'tag', 'tag-1'])
-            ->add(['git', 'tag', 'tag-2'])
-            ->runAll();
+        $this->runMultipleCommands([
+            ['git', 'init'],
+            ['git', 'config', '--local', 'user.email', "test@example.com"],
+            ['git', 'config', '--local', 'user.name', "Test"],
+            ['touch', 'file1'],
+            ['git', 'add', '.'],
+            ['git', 'commit', '-m', 'add file1'],
+            ['git', 'tag', 'tag-1'],
+            ['git', 'tag', 'tag-2'],
+        ], $this->tempPath('r'));
 
         $repository = new Repository($this->tempPath('r'));
 
@@ -27,18 +26,18 @@ class TagTest extends TestCase
 
     public function test_add_method()
     {
-        Process::create($this->tempPath('r'))
-            ->add(['git', 'init'])
-            ->add(['git', 'config', '--local', 'user.email', "test@example.com"])
-            ->add(['git', 'config', '--local', 'user.name', "Test"])
-            ->add(['touch', 'file1'])
-            ->add(['git', 'add', '.'])
-            ->add(['git', 'commit', '-m', 'add file1'])
-            ->runAll();
+        $this->runMultipleCommands([
+            ['git', 'init'],
+            ['git', 'config', '--local', 'user.email', "test@example.com"],
+            ['git', 'config', '--local', 'user.name', "Test"],
+            ['touch', 'file1'],
+            ['git', 'add', '.'],
+            ['git', 'commit', '-m', 'add file1'],
+        ], $this->tempPath('r'));
 
         $repository = new Repository($this->tempPath('r'));
         $repository->tag()->add('tag-test');
 
-        $this->assertEquals('tag-test', trim(Process::run(['git', 'tag'], $this->tempPath('r'))));
+        $this->assertEquals('tag-test', trim($this->runOneCommand(['git', 'tag'], $this->tempPath('r'))));
     }
 }

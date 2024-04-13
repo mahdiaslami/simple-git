@@ -2,24 +2,23 @@
 
 namespace Tests;
 
-use MahdiAslami\Console\Process;
 use MahdiAslami\Console\Repository;
 
 class VersionTagTest extends TestCase
 {
     public function test_get_all_versions()
     {
-        Process::create($this->tempPath('r'))
-            ->add(['git', 'init'])
-            ->add(['git', 'config', '--local', 'user.email', "test@example.com"])
-            ->add(['git', 'config', '--local', 'user.name', "Test"])
-            ->add(['touch', 'file1'])
-            ->add(['git', 'add', '.'])
-            ->add(['git', 'commit', '-m', 'add file1'])
-            ->add(['git', 'tag', 'tag-test'])
-            ->add(['git', 'tag', 'v0.1.0'])
-            ->add(['git', 'tag', 'v0.2.0'])
-            ->runAll();
+        $this->runMultipleCommands([
+            ['git', 'init'],
+            ['git', 'config', '--local', 'user.email', "test@example.com"],
+            ['git', 'config', '--local', 'user.name', "Test"],
+            ['touch', 'file1'],
+            ['git', 'add', '.'],
+            ['git', 'commit', '-m', 'add file1'],
+            ['git', 'tag', 'tag-test'],
+            ['git', 'tag', 'v0.1.0'],
+            ['git', 'tag', 'v0.2.0'],
+        ], $this->tempPath('r'));
 
         $repository = new Repository($this->tempPath('r'));
 
@@ -29,16 +28,16 @@ class VersionTagTest extends TestCase
 
     public function test_latest_method()
     {
-        Process::create($this->tempPath('r'))
-            ->add(['git', 'init'])
-            ->add(['git', 'config', '--local', 'user.email', "test@example.com"])
-            ->add(['git', 'config', '--local', 'user.name', "Test"])
-            ->add(['touch', 'file1'])
-            ->add(['git', 'add', '.'])
-            ->add(['git', 'commit', '-m', 'add file1'])
-            ->add(['git', 'tag', 'v0.1.0'])
-            ->add(['git', 'tag', 'v0.2.0'])
-            ->runAll();
+        $this->runMultipleCommands([
+            ['git', 'init'],
+            ['git', 'config', '--local', 'user.email', "test@example.com"],
+            ['git', 'config', '--local', 'user.name', "Test"],
+            ['touch', 'file1'],
+            ['git', 'add', '.'],
+            ['git', 'commit', '-m', 'add file1'],
+            ['git', 'tag', 'v0.1.0'],
+            ['git', 'tag', 'v0.2.0'],
+        ], $this->tempPath('r'));
 
         $repository = new Repository($this->tempPath('r'));
 
@@ -47,15 +46,15 @@ class VersionTagTest extends TestCase
 
     public function test_nextPatch_method()
     {
-        Process::create($this->tempPath('r'))
-            ->add(['git', 'init'])
-            ->add(['git', 'config', '--local', 'user.email', "test@example.com"])
-            ->add(['git', 'config', '--local', 'user.name', "Test"])
-            ->add(['touch', 'file1'])
-            ->add(['git', 'add', '.'])
-            ->add(['git', 'commit', '-m', 'add file1'])
-            ->add(['git', 'tag', 'v0.1.0'])
-            ->runAll();
+        $this->runMultipleCommands([
+            ['git', 'init'],
+            ['git', 'config', '--local', 'user.email', "test@example.com"],
+            ['git', 'config', '--local', 'user.name', "Test"],
+            ['touch', 'file1'],
+            ['git', 'add', '.'],
+            ['git', 'commit', '-m', 'add file1'],
+            ['git', 'tag', 'v0.1.0'],
+        ], $this->tempPath('r'));
 
         $repository = new Repository($this->tempPath('r'));
 
@@ -64,15 +63,15 @@ class VersionTagTest extends TestCase
 
     public function test_nextMinor_method()
     {
-        Process::create($this->tempPath('r'))
-            ->add(['git', 'init'])
-            ->add(['git', 'config', '--local', 'user.email', "test@example.com"])
-            ->add(['git', 'config', '--local', 'user.name', "Test"])
-            ->add(['touch', 'file1'])
-            ->add(['git', 'add', '.'])
-            ->add(['git', 'commit', '-m', 'add file1'])
-            ->add(['git', 'tag', 'v0.1.1'])
-            ->runAll();
+        $this->runMultipleCommands([
+            ['git', 'init'],
+            ['git', 'config', '--local', 'user.email', "test@example.com"],
+            ['git', 'config', '--local', 'user.name', "Test"],
+            ['touch', 'file1'],
+            ['git', 'add', '.'],
+            ['git', 'commit', '-m', 'add file1'],
+            ['git', 'tag', 'v0.1.1'],
+        ], $this->tempPath('r'));
 
         $repository = new Repository($this->tempPath('r'));
 
@@ -81,15 +80,15 @@ class VersionTagTest extends TestCase
 
     public function test_nextMajor_method()
     {
-        Process::create($this->tempPath('r'))
-            ->add(['git', 'init'])
-            ->add(['git', 'config', '--local', 'user.email', "test@example.com"])
-            ->add(['git', 'config', '--local', 'user.name', "Test"])
-            ->add(['touch', 'file1'])
-            ->add(['git', 'add', '.'])
-            ->add(['git', 'commit', '-m', 'add file1'])
-            ->add(['git', 'tag', 'v0.1.1'])
-            ->runAll();
+        $this->runMultipleCommands([
+            ['git', 'init'],
+            ['git', 'config', '--local', 'user.email', "test@example.com"],
+            ['git', 'config', '--local', 'user.name', "Test"],
+            ['touch', 'file1'],
+            ['git', 'add', '.'],
+            ['git', 'commit', '-m', 'add file1'],
+            ['git', 'tag', 'v0.1.1'],
+        ], $this->tempPath('r'));
 
         $repository = new Repository($this->tempPath('r'));
 
