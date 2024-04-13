@@ -1,6 +1,6 @@
 <?php
 
-namespace MahdiAslami\Cli\Facades;
+namespace MahdiAslami\Support\Facades;
 
 use MahdiAslami\Cli\Git\Repository;
 

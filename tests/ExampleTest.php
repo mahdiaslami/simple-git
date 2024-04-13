@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-use MahdiAslami\Cli\Facades\Git;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase

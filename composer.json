@@ -5,7 +5,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "MahdiAslami\\Cli\\": "src/"
+            "MahdiAslami\\Cli\\": "src/",
+            "MahdiAslami\\Support\\Facades\\": "facades/"
         }
     },
     "autoload-dev": {
