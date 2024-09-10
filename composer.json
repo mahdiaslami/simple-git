@@ -22,9 +22,9 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "symfony/process": "^6.4"
+        "symfony/process": "^7.1.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.5"
+        "phpunit/phpunit": "^11.0.6"
     }
 }
